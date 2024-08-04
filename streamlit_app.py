@@ -58,6 +58,7 @@ if 'area_customer_id' not in st.session_state:
     else:
         pass
 
+time.sleep(1)
 
 youtube_text_area_value = None
 pre_paraphrase_text_area_value = None
