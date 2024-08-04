@@ -2383,16 +2383,17 @@ if st.session_state.current_page == "Trial confirmation":
 if st.session_state.current_page == "Subscribe":
     sub_title_col1, sub_title_col2, sub_title_col3 = st.columns(3)
     with sub_title_col2:
-        st.title("Pickiepoint subscription")
-        st.image("pickiepoint_logo_profile_picture.png")
+        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Subscribe\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
+        st.image("pickiepoint_logo_profile_picture.png", use_column_width=True)
 
-        st.header("")
+        st.write("")
+        st.write("")
 
-        st.caption('<span style="font-size:32px; font-weight:bold; color:orange;">Trial has ended</span>',
-                   unsafe_allow_html=True)
-        st.caption('<span style="font-size:24px; font-weight:bold; color:green;">Get unlimited access</span>',
-                   unsafe_allow_html=True)
-        st.caption('<span style="font-size:24px; color:yellow;">For just 12.99$/month</span>', unsafe_allow_html=True)
+        st.caption('<span style="font-size:32px; font-weight:bold; color:orange;">-\u00A0\u00A0\u00A0Trial has ended\u00A0\u00A0\u00A0-</span>',
+               unsafe_allow_html=True)
+        st.caption('<span style="font-size:24px; font-weight:bold; color:green;">-\u00A0\u00A0\u00A0\u00A0\u00A0Get unlimited access\u00A0\u00A0\u00A0\u00A0\u00A0-</span>',
+               unsafe_allow_html=True)
+        st.caption('<span style="font-size:24px; color:yellow;">-\u00A0\u00A0\u00A0\u00A0For just 12.99$/month\u00A0\u00A0\u00A0\u00A0-</span>', unsafe_allow_html=True)
 
         st.header("")
 
@@ -2407,7 +2408,7 @@ if st.session_state.current_page == "Subscribe":
         st.caption('<span style="font-size:20px; color:white;">✅ Creative paraphrasing</span>', unsafe_allow_html=True)
         st.caption('<span style="font-size:20px; color:white;">✅ Youtube captions</span>', unsafe_allow_html=True)
 
-        st.title("")
+        st.subheader("")
 
         subscribe_but = st.button("Continue", type="primary", use_container_width=True)
         if subscribe_but:
