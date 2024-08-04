@@ -2480,7 +2480,7 @@ if st.session_state.current_page == "Resubscribe":
 if st.session_state.current_page == "Login":
 
     with (st.container(border=True)):
-        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Welcome back\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
+        st.title("-\u00A0\u00A0Welcome back\u00A0\u00A0-")
 
         login_message_placeholder = st.empty()
 
@@ -2497,21 +2497,20 @@ if st.session_state.current_page == "Login":
             st.session_state.current_page = "Forgot password"
             st.rerun()
 
-        st.title("")
-        st.header("")
+        st.subheader("")
 
         login_sub_col1, login_sub_col2, login_sub_col3 = st.columns(3)
         with login_sub_col2:
             login_but = st.button("Login", type="primary", use_container_width=True)
-            st.header("")
-            st.caption('<span style="font-size:27px; color:white;">Need an account ?</span>', unsafe_allow_html=True)
+            st.subheader("")
+            st.caption('<span style="font-size:18px; color:white;">-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Need an account ?\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-</span>', unsafe_allow_html=True)
             no_account_but = st.button("Create one", use_container_width=True)
 
         if no_account_but:
             st.session_state.current_page = "Sign up"
             st.rerun()
 
-        st.title("")
+        st.text("")
 
         login_img_col1, login_img_col2, login_img_col3 = st.columns(3)
         with login_img_col2:
