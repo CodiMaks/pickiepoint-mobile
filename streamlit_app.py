@@ -64,10 +64,8 @@ pre_paraphrase_text_area_value = None
 paraphrase_text_area_value = None
 summary_text_area_value = None
 
-try:
-    areas_customer_id = st.session_state['area_customer_id']
-except:
-    pass
+areas_customer_id = st.session_state['area_customer_id']
+
 
 st.header(cookie_manager.get('user_id'))
 
