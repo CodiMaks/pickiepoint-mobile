@@ -2480,7 +2480,7 @@ if st.session_state.current_page == "Resubscribe":
 if st.session_state.current_page == "Login":
 
     with (st.container(border=True)):
-        st.title("-\u00A0\u00A0Welcome back\u00A0\u00A0-")
+        st.title("-\u00A0\u00A0\u00A0Welcome back\u00A0\u00A0-")
 
         login_message_placeholder = st.empty()
 
