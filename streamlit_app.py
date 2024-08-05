@@ -313,14 +313,12 @@ if st.session_state.current_page == 'Youtube':
 
     st.write("")
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2 = st.columns(2)
     with col1:
         youtube_copy_but = st.button("📋 Copy", use_container_width=True)
+        youtube_audio_but = st.button(label=st.session_state['audio_icon'], use_container_width=True)
     with col2:
         translator = st.button("🌐 Translate", use_container_width=True)
-    with col3:
-        youtube_audio_but = st.button(label=st.session_state['audio_icon'], use_container_width=True)
-    with col4:
         erase_youtube = st.button("❌ Delete", use_container_width=True, help="Clear the text field")
 
 
@@ -468,16 +466,10 @@ if st.session_state.current_page == 'Youtube':
 
     youtube_message_placeholder = st.empty()
 
-    youtube_text_area = st.text_area("Y", label_visibility="hidden", placeholder="Paste Youtube url...", height=300, value=youtube_text_area_value)
-
+    youtube_text_area = st.text_area("Y", label_visibility="hidden", placeholder="Paste Youtube url...", height=550, value=youtube_text_area_value)
+    st.write("")     
     transcribe_but = st.button("Transcribe", use_container_width=True, type="primary")
-
-    st.write("")
-    st.write("")
-
-    bottom_col1, bottom_col2, bottom_col3 = st.columns(3)
-    with bottom_col2:
-        settings_but = st.button("⚙ Settings", use_container_width=True, on_click=go_settings)
+    settings_but = st.button("⚙ Settings", use_container_width=True, on_click=go_settings)
 
 
     def play_audio():
