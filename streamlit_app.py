@@ -40,10 +40,9 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 
 cookie_manager = CookieController()
 if not cookie_manager:
-    st.stop()
-else:
-    st.title("I defeated the cookie problem !")
-    st.write('<meta http-equiv="refresh" content="0">', unsafe_allow_html=True)
+    # st.stop()
+    time.sleep(2)
+
 # cookie_manager.set('user_id', 'cus_maks123')
 # cookie_manager.get('user_id')
 
