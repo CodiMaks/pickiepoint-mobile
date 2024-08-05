@@ -37,10 +37,10 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
-time.sleep(2)
-
 
 cookie_manager = CookieController()
+if not cookie_manager.ready():
+    st.stop()
 # cookie_manager.set('user_id', 'cus_maks123')
 # cookie_manager.get('user_id')
 
