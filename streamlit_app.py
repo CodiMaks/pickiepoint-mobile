@@ -309,7 +309,7 @@ if st.session_state.current_page == 'Youtube':
                                  default_index=0,
                                  on_change=callback, key="youtube_menu")
 
-    pygame.mixer.init()
+    # pygame.mixer.init()
 
     st.write("")
 
