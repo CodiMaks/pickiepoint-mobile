@@ -39,7 +39,8 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 
 
 cookie_manager = CookieController()
-time.sleep(2)
+if not cookie_manager:
+    st.stop()
 
 # cookie_manager.set('user_id', 'cus_maks123')
 # cookie_manager.get('user_id')
