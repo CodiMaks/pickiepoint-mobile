@@ -1982,8 +1982,11 @@ if st.session_state.current_page == "Summary":
 if st.session_state.current_page == 'Settings':
     settings_col1, settings_col2, settings_col3 = st.columns(3)
     with settings_col2:
-        st.title("⚙ Settings")
+        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0⚙ Settings\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
 
+    st.write("")
+    st.write("")
+            
     subscription_container = st.container(border=True)
     with subscription_container:
         manage_sub_but = st.button("💳 Manage subscription", use_container_width=True, type="primary")
@@ -1991,7 +1994,7 @@ if st.session_state.current_page == 'Settings':
     if manage_sub_but:
         webbrowser.open("https://billing.stripe.com/p/login/test_fZecMXciia1B6Mo8ww")
 
-    st.subheader("")
+    st.write("")
 
     tts_container = st.container(border=True)
     with tts_container:
@@ -2018,7 +2021,7 @@ if st.session_state.current_page == 'Settings':
 
         st.rerun()
 
-    st.subheader("")
+    st.write("")
 
     faq_container = st.container(border=True)
     with faq_container:
@@ -2027,13 +2030,13 @@ if st.session_state.current_page == 'Settings':
     if faq_but:
         webbrowser.open("https://drive.google.com/file/d/1TkF4-JCcaAYbUVy5ayVvSSx-kaILP04K/view?usp=sharing")
 
-    st.subheader("")
+    st.write("")
 
     contact_container = st.container(border=True)
     with contact_container:
         st.button("📞 Contact", use_container_width=True, type="primary", on_click=go_contact_page)
 
-    st.subheader("")
+    st.write("")
 
     privacy_container = st.container(border=True)
     with privacy_container:
@@ -2042,7 +2045,7 @@ if st.session_state.current_page == 'Settings':
     if privacy_but:
         webbrowser.open("https://drive.google.com/file/d/1xrmeVvYhzHer834o_TDiNwGp0rvrTrV_/view?usp=sharing")
 
-    st.subheader("")
+    st.write("")
 
     terms_container = st.container(border=True)
     with terms_container:
@@ -2051,14 +2054,13 @@ if st.session_state.current_page == 'Settings':
     if terms_but:
         webbrowser.open("https://drive.google.com/file/d/1124X4IN1yQAvAYQVIebepBxeuNWJxTV5/view?usp=sharing")
 
-    st.subheader("")
+    st.write("")
 
     settings_back_but = st.button("↩ Back")
     if settings_back_but:
         st.session_state.current_page = "Summary"
         st.rerun()
 
-    st.header("")
     st.write("")
 
     settings_subcol1, settings_subcol2, settings_subcol3 = st.columns(3)
@@ -2069,8 +2071,7 @@ if st.session_state.current_page == 'Settings':
 if st.session_state.current_page == 'Contact':
     contact_col1, contact_col2, contact_col3 = st.columns(3)
     with contact_col2:
-        st.title("📞 Contact")
-
+        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0📞 Contact\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
 
     st.divider()
 
@@ -2101,7 +2102,7 @@ if st.session_state.current_page == 'Contact':
     if tiktok_but:
         webbrowser.open("https://www.tiktok.com/@pickiepoint?is_from_webapp=1&sender_device=pc")
 
-    st.subheader("")
+    st.write("")
 
     instagram_container = st.container(border=True)
     with instagram_container:
@@ -2110,7 +2111,7 @@ if st.session_state.current_page == 'Contact':
     if instagram_but:
         webbrowser.open("https://www.instagram.com/pickiepoint?igsh=NHl2c3I2YnRqNmVt")
 
-    st.subheader("")
+    st.write("")
 
     facebook_container = st.container(border=True)
     with facebook_container:
@@ -2119,7 +2120,7 @@ if st.session_state.current_page == 'Contact':
     if facebook_but:
         webbrowser.open("https://www.facebook.com/profile.php?id=61559802255231")
 
-    st.subheader("")
+    st.write("")
 
     snapchat_container = st.container(border=True)
     with snapchat_container:
@@ -2129,7 +2130,7 @@ if st.session_state.current_page == 'Contact':
         webbrowser.open(
             "https://profile.snapchat.com/4b536818-4e44-409d-969f-e71ace4000a4/profiles/93b58548-a490-4204-af7a-ce93343552f9/details/public-stories?ref_aid=af78ba9a-96e9-48bd-85e1-2434facb2a6a")
 
-    st.subheader("")
+    st.write("")
 
     twitter_container = st.container(border=True)
     with twitter_container:
@@ -2138,7 +2139,7 @@ if st.session_state.current_page == 'Contact':
     if twitter_but:
         webbrowser.open("https://x.com/pickiepoint")
 
-    st.subheader("")
+    st.write("")
 
     pinterest_container = st.container(border=True)
     with pinterest_container:
@@ -2147,14 +2148,14 @@ if st.session_state.current_page == 'Contact':
     if pinterest_but:
         webbrowser.open("https://pin.it/3g7YfkVcU")
 
-    st.subheader("")
+    st.write("")
 
     contact_back_but = st.button("↩ Back")
     if contact_back_but:
         st.session_state.current_page = "Settings"
         st.rerun()
 
-    st.header("")
+    st.write("")
     st.write("")
 
     contact_sub_col1, contact_sub_col2 = st.columns(2)
@@ -2422,14 +2423,15 @@ if st.session_state.current_page == "Subscribe":
 if st.session_state.current_page == "Resubscribe":
     sub_title_col1, sub_title_col2, sub_title_col3 = st.columns(3)
     with sub_title_col2:
-        st.title("Pickiepoint subscription")
-        st.image("pickiepoint_logo_profile_picture.png")
+        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Subscribe\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
+        st.image("pickiepoint_logo_profile_picture.png", use_column_width=True)
 
-        st.header("")
+        st.write("")
+        st.write("")
 
-        st.caption('<span style="font-size:24px; font-weight:bold; color:green;">Get unlimited access</span>',
-                   unsafe_allow_html=True)
-        st.caption('<span style="font-size:24px; color:yellow;">For just 12.99$/month</span>', unsafe_allow_html=True)
+        st.caption('<span style="font-size:24px; font-weight:bold; color:green;">-\u00A0\u00A0\u00A0\u00A0\u00A0Get unlimited access\u00A0\u00A0\u00A0\u00A0\u00A0-</span>',
+               unsafe_allow_html=True)
+        st.caption('<span style="font-size:24px; color:yellow;">-\u00A0\u00A0\u00A0\u00A0For just 12.99$/month\u00A0\u00A0\u00A0\u00A0-</span>', unsafe_allow_html=True)
 
         st.header("")
 
@@ -2444,7 +2446,7 @@ if st.session_state.current_page == "Resubscribe":
         st.caption('<span style="font-size:20px; color:white;">✅ Creative paraphrasing</span>', unsafe_allow_html=True)
         st.caption('<span style="font-size:20px; color:white;">✅ Youtube captions</span>', unsafe_allow_html=True)
 
-        st.title("")
+        st.subheader("")
 
         subscribe_but = st.button("Continue", type="primary", use_container_width=True)
         if subscribe_but:
@@ -2711,17 +2713,18 @@ if st.session_state.current_page == "Verification code":
 
     ver_code_title_col1, ver_code_title_col2, ver_code_title_col3 = st.columns(3)
     with ver_code_title_col2:
-        st.title("Enter code")
+        st.title("-\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Enter code\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0-")
 
-    st.title("")
-    st.write("")
+    st.subheader("")
 
     st.write(
         "Enter the verification code we sent to your email inbox. Please consider checking your spam as well.")
     verification_code_message_placeholder = st.empty()
     verification_code_placeholder = st.text_input(label="", placeholder="🔐 Verification code")
 
-    st.header("")
+    st.write("")
+    st.write("")
+    st.write("")
 
     ver_code_col1, ver_code_col2, ver_code_col3 = st.columns(3)
     with ver_code_col2:
@@ -2747,17 +2750,18 @@ if st.session_state.current_page == "Verification code":
 
 
 if st.session_state.current_page == "Password change":
-    st.title("- \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Update your password\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 -")
-
-    st.title("")
-    st.write("")
+    st.title("-\u00A0Password update\u00A0-")
+            
+    st.subheader("")
 
     st.write(
         "You can now set up a new password for your account. Keep it somewhere safe as you will need it the next time you login. After you update it, you will be invited to login with this new password.")
     pass_change_message_placeholder = st.empty()
     pass_change_placeholder = st.text_input(label="", placeholder="🔒 New password", type="password")
 
-    st.header("")
+    st.write("")
+    st.write("")
+    st.write("")
 
     pass_change_col1, pass_change_col2, pass_change_col3 = st.columns(3)
     with pass_change_col2:
