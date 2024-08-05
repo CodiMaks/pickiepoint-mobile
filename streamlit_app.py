@@ -51,6 +51,9 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS areas (youtube_content TEXT, pre_paraphrase_content TEXT, 
 paraphrase_content TEXT, summary_content TEXT, email TEXT, password TEXT, customer_id TEXT, trial_start_date REAL)""")
 
+cursor.execute("SELECT * FROM areas")
+st.write(cursor.fetchall())
+
 # cursor.execute("DELETE FROM areas")
 # cursor.execute("""INSERT INTO areas VALUES (?, ?, ?, ?)""", ("", "", "", ""))
 
