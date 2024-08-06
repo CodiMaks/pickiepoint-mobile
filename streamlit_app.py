@@ -1239,34 +1239,31 @@ if st.session_state.current_page == "Summary":
 
     summary_message_placeholder = st.empty()
 
-    summary_length_area = st.text_input("S", label_visibility="hidden", placeholder="                                                                              Summary length in sentences")
+    summary_length_area = st.text_input("S", label_visibility="hidden", placeholder="           Summary length in sentences")
 
-    summary_text_area = st.text_area("S", label_visibility="hidden", placeholder="Paste link or text to summarize...", height=300, value=summary_text_area_value)
+    summary_text_area = st.text_area("S", label_visibility="hidden", placeholder="Paste link or text to summarize...", height=500, value=summary_text_area_value)
 
     st.write()
 
-    # conn = sqlite3.connect('settings_save.db')
-    # cursor = conn.cursor()
-    # cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    # index_summary_type = cursor.fetchone()[0]
-    # cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    # index_summary_mode = cursor.fetchone()[0]
-    # conn.commit()
-    # conn.close()
+    conn = sqlite3.connect('settings_save.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    index_summary_type = cursor.fetchone()[0]
+    cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    index_summary_mode = cursor.fetchone()[0]
+    conn.commit()
+    conn.close()
 
     summary_sub_col1, summary_sub_col2, summary_sub_col3 = st.columns(3)
     with summary_sub_col1:
-        # summary_type = st_btn_select(("Abstractive", "Extractive"), index=index_summary_type)
-        try:
-            summary_type = st_btn_select(("Abstractive", "Extractive"), key="summary_type_selector")
-        except Exception as error:
-            st.subheader(error)
+        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_type)
     with summary_sub_col2:
         summary_but = st.button("Summarize", use_container_width=True, type="primary")
     with summary_sub_col3:
-        # summary_mode = st_btn_select(("Bullet points", "Plain text"), index=index_summary_mode)
-        summary_mode = st_btn_select(("Bullet points", "Plain text"), key="summary_mode_selector")
+        summary_mode = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Bullet points\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_mode)
 
+    st.write("")
+            
     summary_settings_but = st.button("⚙ Settings", use_container_width=True)
     if summary_settings_but:
         st.session_state.current_page = "Settings"
