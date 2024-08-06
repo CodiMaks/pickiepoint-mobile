@@ -1256,11 +1256,11 @@ if st.session_state.current_page == "Summary":
 
     summary_sub_col1, summary_sub_col2, summary_sub_col3 = st.columns(3)
     with summary_sub_col1:
-        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
+        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
     with summary_sub_col2:
         summary_but = st.button("Summarize", use_container_width=True, type="primary")
     with summary_sub_col3:
-        summary_mode = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Bullet points", "\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
+        summary_mode = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Bullet points\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
 
     st.write("")
             
