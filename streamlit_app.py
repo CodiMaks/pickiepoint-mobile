@@ -1245,22 +1245,22 @@ if st.session_state.current_page == "Summary":
 
     st.write()
 
-    conn = sqlite3.connect('settings_save.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    index_summary_type = cursor.fetchone()[0]
-    cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    index_summary_mode = cursor.fetchone()[0]
-    conn.commit()
-    conn.close()
+    # conn = sqlite3.connect('settings_save.db')
+    # cursor = conn.cursor()
+    # cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    # index_summary_type = cursor.fetchone()[0]
+    # cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    # index_summary_mode = cursor.fetchone()[0]
+    # conn.commit()
+    # conn.close()
 
     summary_sub_col1, summary_sub_col2, summary_sub_col3 = st.columns(3)
     with summary_sub_col1:
-        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_type)
+        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
     with summary_sub_col2:
         summary_but = st.button("Summarize", use_container_width=True, type="primary")
     with summary_sub_col3:
-        summary_mode = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Bullet points", "\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_mode)
+        summary_mode = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Bullet points", "\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
 
     st.write("")
             
