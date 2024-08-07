@@ -112,7 +112,7 @@ language_codes_youtube_api = ["en", "zh-CN", "zh", "zh-TW", "es", "fr", "pt", "h
 
 stripe.api_key = st.secrets["STRIPE_API_KEY"]
 the_rapid_key = st.secrets["the_rapid_key"]
-SENGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
+SENDGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
 
 all_languages = [
     "", "English", "Chinese", "Spanish", "French", "Portuguese", "Hindi", "Arabic", "Japanese",
@@ -2774,7 +2774,7 @@ if st.session_state.current_page == "Forgot password":
                         html_content=f'<text>Your verification code that you can use to change your password: <bold>{verification_code}</bold></text>')
 
 
-                    sg = SendGridAPIClient(SENGRID_API_KEY)
+                    sg = SendGridAPIClient(SENDGRID_API_KEY)
                     sg.send(message)
 
                     cookie_expiration_date = datetime.now() + timedelta(days=2)
