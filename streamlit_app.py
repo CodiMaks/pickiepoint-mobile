@@ -44,6 +44,8 @@ cookie_manager = CookieController()
 # cookie_manager.get('user_id')
 # cookie_manager.remove('user_id')
 
+if 'user_id' not in st.query_params:
+    st.query_params['user_id'] = ""
 
 conn = sqlite3.connect('text_areas.db')
 cursor = conn.cursor()
@@ -60,6 +62,8 @@ st.write(cursor.fetchall())
 if 'area_customer_id' not in st.session_state:
     if cookie_manager.get('user_id'):
         st.session_state['area_customer_id'] = cookie_manager.get('user_id')
+    elif st.query_params["user_id"] != "":
+        st.session_state['area_customer_id'] = st.query_params["user_id"]
     else:
         pass
                 
@@ -230,9 +234,88 @@ if 'session_id' not in st.session_state:
     elif not user_id_cookie:
         if st.session_state['forgot_password_token']:
             st.session_state.current_page = "Verification code"
+
+        elif st.query_params["user_id"] != "":
+            st.text("Backup cookie process")
+
+            cookie_manager.set('user_id', st.query_params["user_id"])
+            backup_cookie = cookie_manager.get('user_id')
+
+            try:
+                conn = sqlite3.connect('text_areas.db')
+                cursor = conn.cursor()
+                st.header("STEP 1")
+                subscriptions = stripe.Subscription.list(customer=backup_cookie, status='all')
+                st.header("STEP 2")
+
+                if subscriptions.data:
+                    latest_subscription = subscriptions.data[0]
+                    subscription_status = latest_subscription.status
+                    if subscription_status == "active":
+                        st.session_state.current_page = "Summary"
+
+                    elif subscription_status == "canceled":
+                        st.session_state.current_page = "Resubscribe"
+                        # MDApp.get_running_app().root.get_screen("subscribe_screen").ids.trial_or_sub_renew_label.text = "Regain access"
+                        # MDApp.get_running_app().root.get_screen("subscribe_screen").ids.trial_or_sub_renew_label.color = (0, 0, 0, 1)
+                    else:
+                        st.session_state.current_page = "Subscribe"
+
+                else:
+                    try:
+                        st.header("STEP 3")
+                        cursor.execute("SELECT trial_start_date FROM areas WHERE customer_id = ?", (backup_cookie,))
+                        start_date_of_trial = cursor.fetchone()[0]
+                        current_date = time.time()
+
+                        if start_date_of_trial is None:
+                            st.header("STEP 4")
+                            st.session_state.current_page = "Sign up"
+                            st.subheader("No trial")
+                        elif current_date - start_date_of_trial > 259200:
+                            st.header("STEP 5")
+                            st.session_state.current_page = "Subscribe"
+
+                            # MDApp.get_running_app().root.get_screen("subscribe_screen").ids.trial_or_sub_renew_label.text = "Trial ended"
+                            # MDApp.get_running_app().root.get_screen("subscribe_screen").ids.trial_or_sub_renew_label.color = (0.67, 0.33, 0, 1)
+                        elif current_date - start_date_of_trial < 259200:
+                            st.header("STEP 6")
+                            st.session_state.current_page = "Summary"
+                        else:
+                            st.header("STEP 7")
+                    except:
+                        st.session_state.current_page = "Sign up"
+
+            except Exception as e:
+                try:
+                    st.header(e)
+                    st.header("STEP 8")
+                    cursor.execute("SELECT trial_start_date FROM areas WHERE customer_id = ?", (backup_cookie,))
+
+                    start_date_of_trial = cursor.fetchone()[0]
+                    current_date = time.time()
+                    if start_date_of_trial is None:
+                        st.subheader("trial date is None")
+                        st.session_state.current_page = "Sign up"
+                    elif start_date_of_trial < 100:
+                        st.subheader("normally you don't enter this condition")
+                        st.session_state.current_page = "Sign up"
+                    elif current_date - start_date_of_trial > 259200:
+                        st.subheader("right one")
+                        st.session_state.current_page = "Subscribe"
+                    elif current_date - start_date_of_trial < 259200:
+                        st.subheader("backup option")
+                        st.session_state.current_page = "Summary"
+                except:
+                    st.session_state.current_page = "Sign up"
+
+            conn.commit()
+            conn.close()
+
         else:
             st.subheader("No cookie")
-            st.session_state.current_page = "Login"
+            # st.session_state.current_page = "Login"
+            st.session_state.current_page = "Sign up"
 
     else:
         st.header("Else cookie")
@@ -1245,22 +1328,22 @@ if st.session_state.current_page == "Summary":
 
     st.write()
 
-    # conn = sqlite3.connect('settings_save.db')
-    # cursor = conn.cursor()
-    # cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    # index_summary_type = cursor.fetchone()[0]
-    # cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
-    # index_summary_mode = cursor.fetchone()[0]
-    # conn.commit()
-    # conn.close()
+    conn = sqlite3.connect('settings_save.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT summary_type FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    index_summary_type = cursor.fetchone()[0]
+    cursor.execute("SELECT summary_mode FROM settings WHERE customer_id = ?", (areas_customer_id, ))
+    index_summary_mode = cursor.fetchone()[0]
+    conn.commit()
+    conn.close()
 
     summary_sub_col1, summary_sub_col2, summary_sub_col3 = st.columns(3)
     with summary_sub_col1:
-        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0"))
+        summary_type = st_btn_select(("\u00A0\u00A0\u00A0\u00A0Abstractive\u00A0\u00A0\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0Extractive\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_type)
     with summary_sub_col2:
         summary_but = st.button("Summarize", use_container_width=True, type="primary")
     with summary_sub_col3:
-        summary_mode = st_btn_select(("\u00A0\u00A0Bullet points\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"))
+        summary_mode = st_btn_select(("\u00A0\u00A0Bullet points\u00A0\u00A0", "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Plain text\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"), index=index_summary_mode)
 
     st.write("")
             
@@ -2210,6 +2293,8 @@ if st.session_state.current_page == "Sign up":
 
                                 customer = stripe.Customer.create(email=user_email)
                                 customer_id = customer["id"]
+
+                                st.query_params["user_id"] = customer_id
 
                                 conn = sqlite3.connect('settings_save.db')
                                 cursor = conn.cursor()
