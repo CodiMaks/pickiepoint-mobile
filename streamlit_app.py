@@ -2844,7 +2844,8 @@ if st.session_state.current_page == "Password change":
     st.subheader("")
 
     st.write(
-        "You can now set up a new password for your account. Keep it somewhere safe as you will need it the next time you login. After you update it, you will be invited to login with this new password.")
+        "You can now set up a new password for your account. Keep it somewhere safe as you will need it the next time you login.")
+    st.write("After you update it, you will be invited to login with this new password.")
     pass_change_message_placeholder = st.empty()
     pass_change_placeholder = st.text_input(label="", placeholder="🔒 New password", type="password")
 
