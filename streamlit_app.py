@@ -111,11 +111,9 @@ conn.close()
 
 language_codes_youtube_api = ["en", "zh-CN", "zh", "zh-TW", "es", "fr", "pt", "hi", "ar", "ja", "bn", "ru", "id", "af", "sq", "am", "hy", "az", "bs", "bg", "my", "hr", "cs", "da", "nl", "et", "fil", "fi", "ka", "de", "el", "ht", "he", "hu", "is", "ga", "it", "kk", "rw", "km", "ko", "ku", "ky", "lv", "lt", "mk", "ms", "mt", "ne", "no", "fa", "pl", "ro", "sm", "sr", "si", "sk", "sl", "so", "sw", "sv", "te", "th", "ti", "tr", "tk", "uk", "ur", "uz", "vi", "cy"]
 
-# stripe.api_key = st.secrets["STRIPE_API_KEY"]
-# the_rapid_key = st.secrets["the_rapid_key"]
-# SENDGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
-
 stripe.api_key = os.getenv("STRIPE_API_KEY")
+the_rapid_key = os.getenv("the_rapid_key")
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 all_languages = [
     "", "English", "Chinese", "Spanish", "French", "Portuguese", "Hindi", "Arabic", "Japanese",
