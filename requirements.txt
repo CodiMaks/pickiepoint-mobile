@@ -1,5 +1,4 @@
 streamlit==1.36.0
-streamlit-cookies-manager==0.2.0
 streamlit-option-menu==0.3.13
 streamlit-cookies-controller==0.0.4
 st-btn-select==0.1.2
