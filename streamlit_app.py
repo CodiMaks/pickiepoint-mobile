@@ -40,7 +40,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 cookie_manager = CookieController()
 # cookie_manager.set('test_cookie', 'cus_maks123')
 # st.text(cookie_manager.get('test_cookie'))
-# cookie_manager.remove("user_id")
+cookie_manager.remove("user_id")
 cookie_manager.getAll()
 
 
