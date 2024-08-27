@@ -2242,7 +2242,10 @@ if st.session_state.current_page == "Sign up":
                                 # cookie_manager.set(cookie="user_id", val=customer_id, expires_at=cookie_expiration_date)
                                 cookie_manager.set('user_id', customer_id, expires=cookie_expiration_date)
 
-                                st.write('<meta http-equiv="refresh" content="0">', unsafe_allow_html=True)
+                                # st.write('<meta http-equiv="refresh" content="0">', unsafe_allow_html=True)
+                                        
+                                st.session_state.current_page = "Trial"
+                                st.rerun()
 
                         else:
                             signup_message_placeholder.error("You must agree to our Terms and Conditions to use our service",
