@@ -12,6 +12,8 @@ import time
 import webbrowser
 from datetime import datetime, timedelta
 import random
+import os
+from dotenv import load_dotenv, dotenv_values
 
 import arabic_reshaper
 from youtube_transcript_api import YouTubeTranscriptApi
@@ -27,6 +29,7 @@ import stripe
 
 st.set_page_config("Pickiepoint", "pickiepoint_logo_profile_picture.png")
 
+load_dotenv()
 
 hide_st_style = """
             <style>
@@ -112,7 +115,7 @@ language_codes_youtube_api = ["en", "zh-CN", "zh", "zh-TW", "es", "fr", "pt", "h
 # the_rapid_key = st.secrets["the_rapid_key"]
 # SENDGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
 
-stripe.api_key = STRIPE_API_KEY
+stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 all_languages = [
     "", "English", "Chinese", "Spanish", "French", "Portuguese", "Hindi", "Arabic", "Japanese",
