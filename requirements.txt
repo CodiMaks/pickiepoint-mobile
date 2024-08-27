@@ -2,6 +2,7 @@ streamlit==1.36.0
 streamlit-option-menu==0.3.13
 streamlit-cookies-controller==0.0.4
 st-btn-select==0.1.2
+python-dotenv
 arabic-reshaper==3.0.0
 youtube-transcript-api==0.6.2
 kivy==2.3.0
